@@ -1,0 +1,24 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+    },
+    "last.imagePath": "E:/Projects/GameMaker/Aerith/LandOfAerith/Assets/Tiles/Crypt",
+    "map.tileHeight": 24,
+    "map.tileWidth": 24,
+    "openFiles": [
+    ],
+    "project": "crypt.tiled-project",
+    "recentFiles": [
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 24,
+        "width": 24
+    }
+}
