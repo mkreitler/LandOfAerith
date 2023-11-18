@@ -1,14 +1,14 @@
 {
   "resourceType": "GMRoom",
   "resourceVersion": "1.0",
-  "name": "SetupRoom",
-  "creationCodeFile": "rooms/SetupRoom/RoomCreationCode.gml",
+  "name": "rm_setup",
+  "creationCodeFile": "rooms/rm_setup/RoomCreationCode.gml",
   "inheritCode": false,
   "inheritCreationOrder": false,
   "inheritLayers": false,
   "instanceCreationOrder": [
-    {"name":"inst_6EDEF3BB","path":"rooms/SetupRoom/SetupRoom.yy",},
-    {"name":"inst_217A9E7F","path":"rooms/SetupRoom/SetupRoom.yy",},
+    {"name":"inst_6EDEF3BB","path":"rooms/rm_setup/rm_setup.yy",},
+    {"name":"inst_217A9E7F","path":"rooms/rm_setup/rm_setup.yy",},
   ],
   "isDnd": false,
   "layers": [

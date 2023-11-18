@@ -17,6 +17,9 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings": [
+    {"name":"spr_crypt_tiles","order":1,"path":"sprites/spr_crypt_tiles/spr_crypt_tiles.yy",},
+    {"name":"rm_tile_test","order":1,"path":"rooms/rm_tile_test/rm_tile_test.yy",},
     {"name":"obj_sizing","order":1,"path":"objects/obj_sizing/obj_sizing.yy",},
+    {"name":"obj_tile_tester","order":2,"path":"objects/obj_tile_tester/obj_tile_tester.yy",},
   ],
 }

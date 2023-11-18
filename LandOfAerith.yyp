@@ -31,18 +31,23 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.8.0.98",
+    "IDEVersion": "2023.8.2.108",
   },
   "resources": [
     {"id":{"name":"fnt_VT323","path":"fonts/fnt_VT323/fnt_VT323.yy",},},
+    {"id":{"name":"ts_crypt","path":"tilesets/ts_crypt/ts_crypt.yy",},},
     {"id":{"name":"spr_sizing","path":"sprites/spr_sizing/spr_sizing.yy",},},
+    {"id":{"name":"spr_crypt_tiles","path":"sprites/spr_crypt_tiles/spr_crypt_tiles.yy",},},
     {"id":{"name":"setup_script","path":"scripts/setup_script/setup_script.yy",},},
+    {"id":{"name":"rm_tile_test","path":"rooms/rm_tile_test/rm_tile_test.yy",},},
     {"id":{"name":"obj_debug","path":"objects/obj_debug/obj_debug.yy",},},
     {"id":{"name":"obj_sizing","path":"objects/obj_sizing/obj_sizing.yy",},},
-    {"id":{"name":"SetupRoom","path":"rooms/SetupRoom/SetupRoom.yy",},},
+    {"id":{"name":"obj_tile_tester","path":"objects/obj_tile_tester/obj_tile_tester.yy",},},
+    {"id":{"name":"rm_setup","path":"rooms/rm_setup/rm_setup.yy",},},
   ],
   "RoomOrderNodes": [
-    {"roomId":{"name":"SetupRoom","path":"rooms/SetupRoom/SetupRoom.yy",},},
+    {"roomId":{"name":"rm_setup","path":"rooms/rm_setup/rm_setup.yy",},},
+    {"roomId":{"name":"rm_tile_test","path":"rooms/rm_tile_test/rm_tile_test.yy",},},
   ],
   "templateType": "game",
   "TextureGroups": [

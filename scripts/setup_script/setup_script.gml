@@ -15,6 +15,8 @@ global.platform = EPLATFORM.DESKTOP;
 
 
 function setup_game(){
+	setup_macro_tile_mappings();
+	
 	if (os_type == os_android) || (os_type == os_ios)
 	{
 		global.platform = EPLATFORM.MOBILE;
@@ -41,6 +43,8 @@ function setup_game(){
 			setup_window(window_get_width(), window_get_height());
 		break;
 	}
+	
+	room_goto(rm_tile_test);	
 }
 
 global.tile_size = 24;
@@ -49,6 +53,8 @@ global.aspect_height = 5;
 global.scale_factor = 1;
 global.width_in_tiles = 0;
 global.height_in_tiles = 0;
+global.game_res_x = 0;
+global.game_res_y = 0;
 
 function setup_window(win_width, win_height)
 {
@@ -59,11 +65,11 @@ function setup_window(win_width, win_height)
 	var height_units = floor(win_height / base_height_unit);
 	
 	var dpi_x = display_get_dpi_x();
-	var dpy_y = display_get_dpi_y();
+	var dpi_y = display_get_dpi_y();
 	
-	// Compute the scale we'll need to get our characters to be 1/2 inch tall on the screen.
-	var pixels_per_half_inch = dpy_y * 0.5;
-	var exact_scale_y = pixels_per_half_inch / global.tile_size;
+	// Compute the scale we'll need to get our characters to be 1 inch tall on the screen (or 1/4 of the screen height):
+	var character_size = min(dpi_y * 1.0, win_height * 0.25);
+	var exact_scale_y = character_size / global.tile_size;
 	global.scale_factor = ceil(exact_scale_y);
 	
 	global.height_in_tiles = floor(win_height / (global.tile_size * global.scale_factor));
@@ -78,5 +84,91 @@ function setup_window(win_width, win_height)
 	obj_sizing.image_xscale = global.scale_factor;
 	obj_sizing.image_yscale = global.scale_factor;
 	obj_sizing.x = global.res_width / 2 - obj_sizing.sprite_width / 2;
-	obj_sizing.y = global.res_height / 2 - obj_sizing.sprite_height / 2;
+	obj_sizing.y = global.res_height / 2 - obj_sizing.sprite_height / 2;	
+	
+	global.game_res_x = global.res_width / global.scale_factor;
+	global.game_res_y = global.res_height / global.scale_factor;
+	global.main_camera = camera_create_view(0, 0, global.game_res_x, global.game_res_y);
+	
+	surface_resize(application_surface, global.game_res_x, global.game_res_y);
+	room_set_viewport(room_next(room), 0, true, 0, 0, global.game_res_x, global.game_res_y);
+	room_set_view_enabled(rm_tile_test, true);
+	room_set_camera(rm_tile_test, 0, global.main_camera);
+}
+
+function setup_macro_tile_mappings() {
+	global.macro_tile_width = 4;
+	global.macro_tile_height = 5;
+	global.hall_length = 10;
+	global.rooms_per_hall = 3;
+	
+	global.filler_tiles = [-1, 8, 18, 24];
+	global.main_tile = [4, 6, 13, 15, 15, 15, 15, 15];
+	global.floor_tile = [28, 28, 28, 35];
+	
+	global.macro_hall_tiles = [
+		{
+			name : "Test Tile 01",
+			tiles: [[31, 31, 31, 31],
+					[-1, -1, -1, -1],
+					[-1, -1, -1, -1],
+					[-1, -1, -1, -1],
+					[-2, -2, -2, -2]]
+		},
+	];
+	
+	global.macro_door_tiles = [
+		{
+			name : "Door_Left",
+			tiles: [[31, 31, 31, 31],
+					[-1, -1, -1, -1],
+					[09, 10, -1, -1],
+					[16, 23, -1, -1],
+					[-2, -2, -2, -2]]
+		},
+		{
+			name : "Door_Mid",
+			tiles: [[31, 31, 31, 31],
+					[-1, -1, -1, -1],
+					[-1, 09, 10, -1],
+					[-1, 16, 23, -1],
+					[-2, -2, -2, -2]]
+		},
+		{
+			name : "Door_Right",
+			tiles: [[31, 31, 31, 31],
+					[-1, -1, -1, -1],
+					[-1, -1, 09, 10],
+					[-1, -1, 16, 23],
+					[-2, -2, -2, -2]]
+		},
+	];
+}
+
+// Returns the index of a random tile within the filler_tiles array:
+function get_filler_tile_index(filler_index) {
+	var _lookup_index = irandom(99);
+	var _tile_index = 0;
+
+	switch (filler_index) {
+		case -1:
+			_tile_index = global.main_tile[irandom(array_length(global.main_tile) - 1)];
+		
+			if (_lookup_index < 1) {
+				_tile_index = global.filler_tiles[1];
+			}
+			else if (_lookup_index < 2) {
+				_tile_index = global.filler_tiles[2];
+			}
+			else if (_lookup_index < 4) {
+				_tile_index = global.filler_tiles[3];
+			}
+		break;
+		
+		case -2:
+			_tile_index = global.floor_tile[irandom(array_length(global.floor_tile) - 1)];
+		break;
+	}
+	
+	return _tile_index;
 }
