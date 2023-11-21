@@ -46,3 +46,4 @@ for (var iRoom=0; iRoom<global.rooms_per_hall; iRoom+=1) {
 }
 
 
+// camera_set_view_target(global.main_camera, obj_player);

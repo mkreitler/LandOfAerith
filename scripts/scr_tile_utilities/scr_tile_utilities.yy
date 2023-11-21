@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "setup_script",
+  "name": "scr_tile_utilities",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
