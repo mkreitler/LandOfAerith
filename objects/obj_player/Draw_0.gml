@@ -1,33 +1,41 @@
-/// @description Insert description here
-// You can write your code in this editor
-var shadow_index = -1;
-switch(shadow_type) {
-	case ESHADOW_TYPE.SMALL:
-		shadow_index = get_anim_index(13, 0, false);
-	break;
+//var shadow_index = -1;
+//switch(shadow_type) {
+//	case ESHADOW_TYPE.SMALL:
+//		shadow_index = get_anim_index(13, 0, false);
+//	break;
 	
-	case ESHADOW_TYPE.MEDIUM:
-		shadow_index = get_anim_index(12, 0, false);
-	break;
+//	case ESHADOW_TYPE.MEDIUM:
+//		shadow_index = get_anim_index(12, 0, false);
+//	break;
 	
-	case ESHADOW_TYPE.LARGE:
-		shadow_index = get_anim_index(11, 0, false);
-	break;
+//	case ESHADOW_TYPE.LARGE:
+//		shadow_index = get_anim_index(11, 0, false);
+//	break;
 	
-	default: // Includes ESHADOW_TYPE.NONE
-		// Do nothing.
-	break;
-}
+//	default: // Includes ESHADOW_TYPE.NONE
+//		// Do nothing.
+//	break;
+//}
 
-if (shadow_index > 0) {
-	draw_tile(ts_creatures_flipped, shadow_index, 0, x, y);
-}
+//if (shadow_index > 0) {
+//	draw_tile(ts_creatures_flipped, shadow_index, 0, x, y);
+//}
 
 facing_right = direction == 0;
-var anim_index = get_anim_index(tile_index, frame, facing_right);
+
+var draw_index = tile_index;
+if (frame == 1) {
+	draw_index += get_sprite_sheet_columns();
+}
+
+var sprite_source_x = get_sprite_source_x_for_tile(draw_index);
+var sprite_source_y = get_sprite_source_y_for_tile(draw_index);
+
+var draw_scale = scale;
+var draw_x = x;
 if (facing_right) {
-	draw_tile(ts_creatures_flipped, anim_index, 0, x, y);
+	draw_scale *= -1;
+	draw_x += global.tile_size;
 }
-else {
-	draw_tile(ts_creatures, anim_index, 0, x, y);
-}
+
+draw_sprite_part_ext(spr_creatures, 0, sprite_source_x, sprite_source_y, global.tile_size, global.tile_size, draw_x, y, draw_scale, abs(draw_scale), c_white, 1);

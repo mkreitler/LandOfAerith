@@ -34,6 +34,7 @@
     "IDEVersion": "2023.8.2.108",
   },
   "resources": [
+    {"id":{"name":"scr_monster_utilities","path":"scripts/scr_monster_utilities/scr_monster_utilities.yy",},},
     {"id":{"name":"spr_creatures","path":"sprites/spr_creatures/spr_creatures.yy",},},
     {"id":{"name":"fnt_VT323","path":"fonts/fnt_VT323/fnt_VT323.yy",},},
     {"id":{"name":"ts_creatures_flipped","path":"tilesets/ts_creatures_flipped/ts_creatures_flipped.yy",},},
@@ -44,8 +45,11 @@
     {"id":{"name":"spr_crypt_tiles","path":"sprites/spr_crypt_tiles/spr_crypt_tiles.yy",},},
     {"id":{"name":"scr_setup","path":"scripts/scr_setup/scr_setup.yy",},},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},},
-    {"id":{"name":"rm_tile_test","path":"rooms/rm_tile_test/rm_tile_test.yy",},},
-    {"id":{"name":"obj_debug","path":"objects/obj_debug/obj_debug.yy",},},
+    {"id":{"name":"scr_character_utilities","path":"scripts/scr_character_utilities/scr_character_utilities.yy",},},
+    {"id":{"name":"rm_dungeon","path":"rooms/rm_dungeon/rm_dungeon.yy",},},
+    {"id":{"name":"obj_monster","path":"objects/obj_monster/obj_monster.yy",},},
+    {"id":{"name":"scr_player_utilities","path":"scripts/scr_player_utilities/scr_player_utilities.yy",},},
+    {"id":{"name":"obj_game_manager","path":"objects/obj_game_manager/obj_game_manager.yy",},},
     {"id":{"name":"obj_sizing","path":"objects/obj_sizing/obj_sizing.yy",},},
     {"id":{"name":"obj_tile_tester","path":"objects/obj_tile_tester/obj_tile_tester.yy",},},
     {"id":{"name":"ts_creatures","path":"tilesets/ts_creatures/ts_creatures.yy",},},
@@ -54,7 +58,7 @@
   ],
   "RoomOrderNodes": [
     {"roomId":{"name":"rm_setup","path":"rooms/rm_setup/rm_setup.yy",},},
-    {"roomId":{"name":"rm_tile_test","path":"rooms/rm_tile_test/rm_tile_test.yy",},},
+    {"roomId":{"name":"rm_dungeon","path":"rooms/rm_dungeon/rm_dungeon.yy",},},
   ],
   "templateType": "game",
   "TextureGroups": [

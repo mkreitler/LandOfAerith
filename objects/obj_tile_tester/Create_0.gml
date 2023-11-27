@@ -1,5 +1,3 @@
-/// @description Insert description here
-// You can write your code in this editor
 var lay_id = layer_get_id("BackTiles");
 var map_id = layer_tilemap_get_id(lay_id);
 var tileset = tilemap_get_tileset(map_id);

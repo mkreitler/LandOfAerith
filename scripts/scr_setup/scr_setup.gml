@@ -4,6 +4,11 @@ global.res_width = 1200;
 global.res_height = 1920;
 global.res_aspect = res_width / res_height;
 
+enum EGAME_STATE {
+	SETUP,
+	DUNGEON_MOVE,
+}
+
 enum EPLATFORM
 {
 	DESKTOP,
@@ -18,9 +23,23 @@ enum ESHADOW_TYPE {
 	LARGE
 }
 
+enum EMONSTER_TYPE {
+	BASIC,
+	SENTRY,
+	PATROL
+}
+
+enum EPATROL_STATE {
+	MOVING,
+	WAITING,
+}
+
+global.game_state = EGAME_STATE.SETUP;
 global.platform = EPLATFORM.DESKTOP;
 global.do_debug = false;
 global.character_offset_y = 5;
+global.player = -1;
+global.monsters = [];
 
 function setup_game(){
 	setup_macro_tile_mappings();
@@ -52,7 +71,7 @@ function setup_game(){
 		break;
 	}
 	
-	room_goto(rm_tile_test);	
+	room_goto(rm_dungeon);	
 }
 
 global.tile_size = 24;
@@ -99,9 +118,9 @@ function setup_window(win_width, win_height)
 	global.main_camera = camera_create_view(0, 0, global.game_res_x, global.game_res_y);
 	
 	surface_resize(application_surface, global.game_res_x, global.game_res_y);
-	room_set_viewport(rm_tile_test, 0, true, 0, 0, global.game_res_x, global.game_res_y);
-	room_set_view_enabled(rm_tile_test, true);
-	room_set_camera(rm_tile_test, 0, global.main_camera);
+	room_set_viewport(rm_dungeon, 0, true, 0, 0, global.game_res_x, global.game_res_y);
+	room_set_view_enabled(rm_dungeon, true);
+	room_set_camera(rm_dungeon, 0, global.main_camera);
 }
 
 function setup_macro_tile_mappings() {
@@ -152,16 +171,7 @@ function setup_macro_tile_mappings() {
 		},
 	];
 }
-
-// Returns the "row" value of the top of the dungeon hallway:
-function get_hall_top_row() {
-	return global.height_in_tiles - array_length(global.macro_hall_tiles[0].tiles);
-}
-
-function get_rows_in_hall() {
-	return array_length(global.macro_hall_tiles[0].tiles);
-}
-
+	
 // Returns the index of a random tile within the filler_tiles array:
 function get_filler_tile_index(filler_index) {
 	var _lookup_index = irandom(99);

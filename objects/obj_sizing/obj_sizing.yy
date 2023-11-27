@@ -25,10 +25,7 @@
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
-  "spriteId": {
-    "name": "spr_sizing",
-    "path": "sprites/spr_sizing/spr_sizing.yy",
-  },
+  "spriteId": null,
   "spriteMaskId": null,
   "visible": true,
 }
